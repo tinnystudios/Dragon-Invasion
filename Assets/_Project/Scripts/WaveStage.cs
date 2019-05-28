@@ -9,8 +9,7 @@ public class WaveStage : StageBase
     {
         while (true)
         {
-            var enemy = RandomUtils.GetByProbability(Model.Enemies).Enemy;
-            yield return Spawner.Spawn(enemy);
+            yield return Spawner.Spawn(Model.GetEnemy(), Model.SpawnRate());
         }
     }
 }

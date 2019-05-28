@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public SpawnerSettings Settings;
     public List<SpawnZone> Zones;
 
     public SpawnZone SelectSpawnZone => Zones[Random.Range(0, Zones.Count)];
 
-    public IEnumerator Spawn(Enemy enemy)
+    public IEnumerator Spawn(Enemy enemy, float rate)
     {
-        yield return new WaitForSeconds(Settings.Rate);
+        yield return new WaitForSeconds(rate);
         var spawnZone = SelectSpawnZone;
         var spawnDirection = spawnZone.GetSpawnPosition - Camera.main.transform.position;
         spawnDirection.Normalize();
