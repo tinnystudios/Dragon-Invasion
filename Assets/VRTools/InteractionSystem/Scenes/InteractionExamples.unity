@@ -236,6 +236,52 @@ Transform:
   m_Father: {fileID: 1755199559}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &266208496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266208497}
+  - component: {fileID: 266208498}
+  m_Layer: 0
+  m_Name: '[PlayerSimulator]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &266208497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266208496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 323062106}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &266208498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266208496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a907104623150740bd3991b8151037d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 513481142}
+  Arrow: {fileID: 8143770537842360820, guid: ada4eefeed87a80439809821ddc5d213, type: 3}
+  MoveSpeed: 1
 --- !u!1 &319062335
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +347,7 @@ Transform:
   m_Children:
   - {fileID: 513481142}
   - {fileID: 1910910874}
+  - {fileID: 266208497}
   m_Father: {fileID: 1774414762}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1065,12 +1112,12 @@ GameObject:
   - component: {fileID: 1910910874}
   - component: {fileID: 1910910875}
   m_Layer: 0
-  m_Name: '[Simulator]'
+  m_Name: '[VRSimulator]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1910910874
 Transform:
   m_ObjectHideFlags: 0
@@ -1513,6 +1560,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[LeftHand]'
       objectReference: {fileID: 0}
+    - target: {fileID: 4568589473168013140, guid: ad3c91740af49c7419193801cc7da399,
+        type: 3}
+      propertyPath: RealHand
+      value: 
+      objectReference: {fileID: 1021413432}
     - target: {fileID: 7319625207221007480, guid: ad3c91740af49c7419193801cc7da399,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1573,11 +1625,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b0c866b09a39f6f4a93d7c53129930ca, type: 2}
-    - target: {fileID: 4568589473168013140, guid: ad3c91740af49c7419193801cc7da399,
-        type: 3}
-      propertyPath: RealHand
-      value: 
-      objectReference: {fileID: 1021413432}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3c91740af49c7419193801cc7da399, type: 3}
 --- !u!4 &7319625206519251983 stripped

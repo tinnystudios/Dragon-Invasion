@@ -9,10 +9,6 @@ public class VRSimulator : MonoBehaviour
 
     private void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
-        var delta = new Vector3(horizontal, vertical, 0);
-
-        LeftHand.transform.position += delta * Time.deltaTime * 3;
+        LeftHand.transform.position += GameInput.Movement * Time.deltaTime * 3;
     }
 }

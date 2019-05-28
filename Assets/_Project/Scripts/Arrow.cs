@@ -24,10 +24,13 @@ public class Arrow : MonoBehaviour
     public void Fire(float velocity)
     {
         IsFlying = true;
+
+        _rigidBody.useGravity = true;
+        _rigidBody.isKinematic = false;
         _rigidBody.velocity = transform.forward * velocity;
 
-        var grabber = (Grabber)Grabbable.Grabber;
-        grabber.Detatch(Grabbable);
+        var grabber = (Grabber)Grabbable?.Grabber;
+        grabber?.Detatch(Grabbable);
 
         Debug.Log($"Fire Velocity: {velocity}");
     }
