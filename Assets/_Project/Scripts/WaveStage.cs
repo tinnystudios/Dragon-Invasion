@@ -2,7 +2,7 @@
 
 public class WaveStage : StageBase
 {
-    public WaveModel Model;
+    public WaveBaseModel Model;
     public Spawner Spawner;
 
     public override IEnumerator Run()
