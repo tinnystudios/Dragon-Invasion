@@ -37,9 +37,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Count: 20
   Enemies:
-  - Enemy: {fileID: 149737194857825221, guid: c9e990e79a24f9a4f91b3b445d7173b6, type: 3}
+  - Name: Enemy Land
+    Enemy: {fileID: 149737194857825221, guid: c9e990e79a24f9a4f91b3b445d7173b6, type: 3}
     Weight: 50
-  - Enemy: {fileID: 149737194857825221, guid: c9e990e79a24f9a4f91b3b445d7173b6, type: 3}
+  - Name: Enemy Flying
+    Enemy: {fileID: 149737194857825221, guid: c9e990e79a24f9a4f91b3b445d7173b6, type: 3}
     Weight: 50
+  TotalEnemies: 20
