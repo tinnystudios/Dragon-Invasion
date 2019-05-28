@@ -4,33 +4,18 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Enemy EnemyPrefab;
-
-    public List<SpawnZone> Zones;
     public SpawnerSettings Settings;
+    public List<SpawnZone> Zones;
 
     public SpawnZone SelectSpawnZone => Zones[Random.Range(0, Zones.Count)];
 
-    private void Awake()
-    {
-        StartCoroutine(Run());
-    }
-
-    private IEnumerator Run()
-    {
-        while (true)
-        {
-            yield return Spawn();
-        }
-    }
-
-    private IEnumerator Spawn()
+    public IEnumerator Spawn(Enemy enemy)
     {
         yield return new WaitForSeconds(Settings.Rate);
         var spawnZone = SelectSpawnZone;
         var spawnDirection = spawnZone.GetSpawnPosition - Camera.main.transform.position;
         spawnDirection.Normalize();
 
-        var instance = Instantiate(EnemyPrefab, spawnZone.GetSpawnPosition, Quaternion.identity);
+        var instance = Instantiate(enemy, spawnZone.GetSpawnPosition, Quaternion.identity);
     }
 }
