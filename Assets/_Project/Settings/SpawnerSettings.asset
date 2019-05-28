@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805ed435659377e47bf4c3aa3d414791, type: 3}
   m_Name: SpawnerSettings
   m_EditorClassIdentifier: 
-  Rate: 1
+  Rate: 2.5
