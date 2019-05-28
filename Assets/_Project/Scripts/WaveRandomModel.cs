@@ -6,11 +6,10 @@
 [CreateAssetMenu]
 public class WaveRandomModel : WaveBaseModel
 {
-    public int Count = 20;
+    public int TotalEnemies = 20;
     private int _enemyCount = 0;
 
-    public override float Progress => _enemyCount / (float)Count;
-    public override float SpawnRate() => SpawnerSettings.GetRate(DifficultyCurve, Progress);
+    public override float Progress => _enemyCount / (float)TotalEnemies;
 
     public override Enemy GetEnemy()
     {
