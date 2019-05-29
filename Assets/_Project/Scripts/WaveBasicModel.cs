@@ -10,7 +10,12 @@ public class WaveBasicModel : WaveBaseModel
 
     public override float Progress => _enemyCount / (float)Enemies.Count;
 
-    public override Enemy GetEnemy()
+    public override void Clear()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Enemy GetEnemyPrefab()
     {
         var enemy = Enemies[_enemyCount].Enemy;
         _enemyCount++;

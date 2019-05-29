@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class WaveBaseModel : ScriptableObject
@@ -9,7 +10,7 @@ public abstract class WaveBaseModel : ScriptableObject
     /// <summary>
     /// A curve to be evaluated by the Progress to determine the spawn rate and possibly other features
     /// </summary>
-    public AnimationCurve DifficultyCurve;
+    public AnimationCurve DifficultyCurve = AnimationCurve.Linear(0,0,1,1);
     
     /// <summary>
     /// The list of enemies to spawn, this varies from model to model
@@ -31,5 +32,10 @@ public abstract class WaveBaseModel : ScriptableObject
     /// Returns an enemy depending the implementation
     /// </summary>
     /// <returns></returns>
-    public abstract Enemy GetEnemy();
+    public abstract Enemy GetEnemyPrefab();
+
+    /// <summary>
+    /// Clear any persistent settings
+    /// </summary>
+    public abstract void Clear();
 }

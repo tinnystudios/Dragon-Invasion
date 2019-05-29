@@ -10,8 +10,12 @@ public class WaveRandomModel : WaveBaseModel
     private int _enemyCount = 0;
 
     public override float Progress => _enemyCount / (float)TotalEnemies;
+    public override void Clear()
+    {
+        _enemyCount = 0;
+    }
 
-    public override Enemy GetEnemy()
+    public override Enemy GetEnemyPrefab()
     {
         _enemyCount++;
         return RandomUtils.GetByProbability(Enemies).Enemy;
