@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject HitEffect;
+
     public Health Health;
 
     public LayerMask DamageLayer;
@@ -47,8 +49,8 @@ public class Enemy : MonoBehaviour
         if (hits.Length > 0)
         {
             var arrow = hits[0].GetComponentInParent<Arrow>();
+            Instantiate(HitEffect, arrow.transform.position, Quaternion.identity);
             Destroy(arrow.gameObject);
-
             Health.TakeDamage();
         }
     }

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17450ef1571a8a40b2ae81dada6a56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitEffect: {fileID: 100018, guid: 5b4f7f3252b13a84ea3ca27142789e0b, type: 3}
   Health: {fileID: 4369259190452276576}
   DamageLayer:
     serializedVersion: 2
