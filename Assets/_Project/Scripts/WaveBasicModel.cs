@@ -12,13 +12,17 @@ public class WaveBasicModel : WaveBaseModel
 
     public override void Clear()
     {
-        throw new System.NotImplementedException();
+        _enemyCount = 0;
     }
 
     public override Enemy GetEnemyPrefab()
     {
         var enemy = Enemies[_enemyCount].Enemy;
         _enemyCount++;
+
+        Debug.Log(enemy.transform.name);
+
+        Debug.Log("Progress " + Progress);
         return enemy;
     }
 }

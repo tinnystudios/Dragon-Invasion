@@ -11,6 +11,12 @@ public class StageRunner : MonoBehaviour
     public Coroutine Begin()
     {
         _stages = GetComponentsInChildren<StageBase>();
+
+        foreach (var stage in _stages)
+        {
+            stage.gameObject.SetActive(false);
+        }
+
         return StartCoroutine(Run());
     }
 
@@ -18,7 +24,9 @@ public class StageRunner : MonoBehaviour
     {
         foreach (var stage in _stages)
         {
+            stage.gameObject.SetActive(true);
             yield return stage.Run();
+            stage.gameObject.SetActive(false);
         }
     }
 }

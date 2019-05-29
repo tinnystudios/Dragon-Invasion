@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bd9296d8f86c54fa05c9ace7cd1155, type: 3}
-  m_Name: 
+  m_Name: Wave 5 Boss
   m_EditorClassIdentifier: 
-  SpawnerSettings: {fileID: 0}
+  SpawnerSettings: {fileID: 11400000, guid: 43ab7f2b5de8afa4f9e44325c6129acb, type: 2}
   DifficultyCurve:
     serializedVersion: 2
     m_Curve:
@@ -39,5 +39,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   Enemies:
   - Name: Boss
-    Enemy: {fileID: 0}
-    Weight: 0
+    Enemy: {fileID: 800784554649845989, guid: 196f3c0b2a100d441b291b8375fda621, type: 3}
+    Weight: 100

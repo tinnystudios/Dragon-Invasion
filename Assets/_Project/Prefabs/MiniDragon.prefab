@@ -104,6 +104,7 @@ MonoBehaviour:
     m_Bits: 512
   MoveSpeed: 2
   AttackRange: 2
+  ColliderRadius: 0.17
 --- !u!114 &-5355423765458530752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4120511570174132, guid: 4a45854d964df174999038f4db020448, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.136
       objectReference: {fileID: 0}
     - target: {fileID: 4120511570174132, guid: 4a45854d964df174999038f4db020448, type: 3}
       propertyPath: m_LocalPosition.z

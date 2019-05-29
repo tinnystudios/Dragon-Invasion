@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float MoveSpeed = 1;
     public float AttackRange = 2;
 
+    public float ColliderRadius = 0.5F;
+
     public Action<Enemy> OnDeath { get; set; }
 
     private void Awake()
@@ -39,11 +41,14 @@ public class Enemy : MonoBehaviour
             Attack();
         }
 
-        var hits = Physics.OverlapSphere(transform.position, 0.5F, DamageLayer);
+        // Substitute this with colliders or smaller compartments to allow special hitting spots
+        var hits = Physics.OverlapSphere(transform.position, ColliderRadius, DamageLayer);
 
         if (hits.Length > 0)
         {
-            Destroy(hits[0].gameObject);
+            var arrow = hits[0].GetComponentInParent<Arrow>();
+            Destroy(arrow.gameObject);
+
             Health.TakeDamage();
         }
     }
@@ -51,5 +56,10 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, ColliderRadius);
     }
 }

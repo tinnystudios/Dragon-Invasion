@@ -98,7 +98,7 @@ public class Bow : MonoBehaviour
             if (_arrow == null)
                 _arrow = arrowHit;
 
-            if (_arrow != null && _arrow == arrowHit)
+            if (_arrow != null && _arrow == arrowHit && _arrowGrabber != null)
             {
                 _arrow.Found(Notch);
                 _grabberFoundPos = _arrowGrabber.transform.position;

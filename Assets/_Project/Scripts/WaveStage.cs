@@ -20,5 +20,8 @@ public class WaveStage : StageBase
             yield return Spawner.Spawn(Model.GetEnemyPrefab(), Model.SpawnRate());
             yield return null;
         }
+
+        // Make sure all enemies are dead
+        yield return new WaitUntil(() => Spawner.State == EState.Ended);
     }
 }
