@@ -44,4 +44,4 @@ MonoBehaviour:
   - Name: Enemy Flying
     Enemy: {fileID: 149737194857825221, guid: c9e990e79a24f9a4f91b3b445d7173b6, type: 3}
     Weight: 50
-  TotalEnemies: 5
+  TotalEnemies: 20
