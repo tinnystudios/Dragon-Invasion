@@ -6,6 +6,7 @@
 [CreateAssetMenu]
 public class WaveRandomModel : WaveBaseModel
 {
+    [Header("Implementation")]
     public int TotalEnemies = 20;
     private int _enemyCount = 0;
 

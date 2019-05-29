@@ -3,11 +3,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Health Health;
+
     public LayerMask DamageLayer;
     public float MoveSpeed = 1;
     public float AttackRange = 2;
 
     public Action<Enemy> OnDeath { get; set; }
+
+    private void Awake()
+    {
+        Health.OnHealthDepleted += OnHealthDepleted;
+    }
+
+    private void OnHealthDepleted()
+    {
+        OnDeath?.Invoke(this);
+        Destroy(gameObject);
+    }
 
     private void Update()
     {
@@ -28,11 +41,10 @@ public class Enemy : MonoBehaviour
 
         var hits = Physics.OverlapSphere(transform.position, 0.5F, DamageLayer);
 
-        // #TODO Health Script
         if (hits.Length > 0)
         {
-            OnDeath?.Invoke(this);
-            Destroy(gameObject);
+            Destroy(hits[0].gameObject);
+            Health.TakeDamage();
         }
     }
 
