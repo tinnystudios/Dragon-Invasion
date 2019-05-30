@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Bits: 512
   MoveSpeed: 2
   AttackRange: 3.5
-  ColliderRadius: 1.38
+  ColliderRadius: 1.5
 --- !u!114 &4369259190452276576
 MonoBehaviour:
   m_ObjectHideFlags: 0
