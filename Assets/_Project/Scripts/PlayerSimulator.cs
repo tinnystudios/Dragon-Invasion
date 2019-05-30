@@ -9,6 +9,7 @@ public class PlayerSimulator : MonoBehaviour
 
     public float MoveSpeed = 1;
 
+#if UNITY_EDITOR
     private void Update()
     {
         Player.transform.position += GameInput.Movement * MoveSpeed;
@@ -25,4 +26,5 @@ public class PlayerSimulator : MonoBehaviour
         }
 
     }
+#endif
 }
