@@ -79,7 +79,9 @@ public class Bow : MonoBehaviour
     public void LockArrow()
     {
         if (!CanLockArrow)
+        {
             return;
+        }
 
         var startPosition = Notch.transform.position;
         var endPosition = Notch.transform.position - (Notch.transform.forward * MaxArrowDistance);
@@ -87,8 +89,8 @@ public class Bow : MonoBehaviour
         _arrow.transform.position = Vector3.Lerp(startPosition, endPosition, ArrowDistance01);
         _arrow.transform.rotation = Notch.transform.rotation;
 
-        var amount = Mathf.Lerp(0.1F, 0.4F,ArrowDistance01);
-        Vibrate(_arrowGrabber, amount);
+        var amount = Mathf.Lerp(0.2F, 0.8F,ArrowDistance01);
+        Vibrate(_arrowGrabber, amount, amount);
     }
 
     public void FindArrow()
@@ -104,7 +106,7 @@ public class Bow : MonoBehaviour
             if (_arrow == null)
                 _arrow = arrowHit;
 
-            Vibrate(_arrowGrabber, 0.2F);
+            Vibrate(_arrowGrabber, 0.2F, 0.2F);
 
             if (_arrow != null && _arrow == arrowHit && _arrowGrabber != null && _arrowGrabber.IsGrabbing)
             {
@@ -112,9 +114,14 @@ public class Bow : MonoBehaviour
                 _grabberFoundPos = _arrowGrabber.transform.position;
             }
         }
+
+        if (_arrow != null && !_arrow.FoundNotch && hits.Length == 0)
+        {
+            Vibrate(_arrowGrabber,0,0);
+        }
     }
 
-    public void Vibrate(Grabber grabber, float amount)
+    public void Vibrate(Grabber grabber, float freq, float amp)
     {
         if (grabber == null)
             return;
@@ -124,7 +131,7 @@ public class Bow : MonoBehaviour
             ? OVRInput.Controller.LTouch
             : OVRInput.Controller.RTouch;
 
-        OVRInput.SetControllerVibration(0.2F, amount, hand);
+        OVRInput.SetControllerVibration(freq, amp, hand);
     }
 
     private void OnArrowRelease()
@@ -135,6 +142,8 @@ public class Bow : MonoBehaviour
         _arrow = null;
 
         MakeNewArrow();
+
+        Vibrate(_arrowGrabber, 0, 0);
     }
 
     private void OnDrawGizmos()
