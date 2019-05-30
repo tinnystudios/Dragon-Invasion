@@ -51,7 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   MoveSpeed: 2
-  AttackRange: 2
+  AttackRange: 3.5
   ColliderRadius: 1.38
 --- !u!114 &4369259190452276576
 MonoBehaviour:
@@ -74,10 +74,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6933507041107428379}
     m_Modifications:
-    - target: {fileID: 101568, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Name
-      value: Red
-      objectReference: {fileID: 0}
     - target: {fileID: 454130, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -133,6 +129,10 @@ PrefabInstance:
     - target: {fileID: 454130, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 101568, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Name
+      value: Red
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}

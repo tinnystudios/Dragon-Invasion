@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 55165344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.09993435, y: 0.100295156, z: 0.06342767}
+  m_LocalScale: {x: 0.15502816, y: 0.26934263, z: 0.22075367}
   m_Children: []
   m_Father: {fileID: 4414796965512117655}
   m_RootOrder: 2
@@ -279,10 +279,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeepWorldTransform: 1
   LeftHandPlacement:
-    LocalEuler: {x: 0, y: -40, z: 90}
+    LocalEuler: {x: 0, y: 0, z: 90}
     Handedness: 0
   RightHandPlacement:
-    LocalEuler: {x: 0, y: 40, z: 90}
+    LocalEuler: {x: 0, y: 0, z: 90}
     Handedness: 1
 --- !u!54 &6415654669516288176
 Rigidbody:
@@ -307,18 +307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4414796965512117655}
     m_Modifications:
-    - target: {fileID: 100002, guid: 022a72268e462114788abcf0c0b07418, type: 3}
-      propertyPath: m_Name
-      value: Elven Long Bow
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 022a72268e462114788abcf0c0b07418, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 022a72268e462114788abcf0c0b07418, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 022a72268e462114788abcf0c0b07418, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -374,6 +362,18 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 022a72268e462114788abcf0c0b07418, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.031484094
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 022a72268e462114788abcf0c0b07418, type: 3}
+      propertyPath: m_Name
+      value: Elven Long Bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 022a72268e462114788abcf0c0b07418, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 022a72268e462114788abcf0c0b07418, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 022a72268e462114788abcf0c0b07418, type: 3}
       propertyPath: m_Materials.Array.data[0]
