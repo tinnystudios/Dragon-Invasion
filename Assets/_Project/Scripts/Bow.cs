@@ -113,7 +113,7 @@ public class Bow : MonoBehaviour
 
     private void OnArrowRelease()
     {
-        var velocity = Mathf.Lerp(0, 30, ArrowDistance01);
+        var velocity = Mathf.Lerp(0, 50, ArrowDistance01);
 
         _arrow.Fire(velocity);
         _arrow = null;
