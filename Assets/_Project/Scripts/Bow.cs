@@ -93,6 +93,14 @@ public class Bow : MonoBehaviour
         Vibrate(_arrowGrabber, amount, amount);
     }
 
+    public Vector3 ArrowPosition()
+    {
+        var startPosition = Notch.transform.position;
+        var endPosition = Notch.transform.position - (Notch.transform.forward * MaxArrowDistance);
+
+        return Vector3.Lerp(startPosition, endPosition, ArrowDistance01);
+    }
+
     public void FindArrow()
     {
         if (_arrow != null && _arrow.FoundNotch)
