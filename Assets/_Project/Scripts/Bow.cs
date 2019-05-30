@@ -13,7 +13,12 @@ public class Bow : MonoBehaviour
     public float Radius = 0.2F;
     public float MaxArrowDistance = 1.5F;
 
-    public bool CanLockArrow => _arrow != null && !_arrow.IsFlying && _arrowGrabber != null && _arrow.FoundNotch;
+    public bool CanLockArrow => 
+        _arrow != null && 
+        !_arrow.IsFlying && 
+        _arrowGrabber != null && 
+        _arrow.FoundNotch;
+
     public float ArrowDistance01 => DistanceFromFirstGrab / MaxArrowDistance;
     public float DistanceFromFirstGrab => Vector3.Distance(_arrowGrabber.transform.position, _grabberFoundPos);
 
@@ -98,7 +103,7 @@ public class Bow : MonoBehaviour
             if (_arrow == null)
                 _arrow = arrowHit;
 
-            if (_arrow != null && _arrow == arrowHit && _arrowGrabber != null)
+            if (_arrow != null && _arrow == arrowHit && _arrowGrabber != null && _arrowGrabber.IsGrabbing)
             {
                 _arrow.Found(Notch);
                 _grabberFoundPos = _arrowGrabber.transform.position;
