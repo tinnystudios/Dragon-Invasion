@@ -953,7 +953,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 1000
+  far clip plane: 3000
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -6808,7 +6808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 468532, guid: 663fd3fcb0cd4fe4f8316a05b83dc575, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.16
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 468532, guid: 663fd3fcb0cd4fe4f8316a05b83dc575, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6864,7 +6864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13767310, guid: 663fd3fcb0cd4fe4f8316a05b83dc575, type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: 3.0871286
+      value: 3.0871296
       objectReference: {fileID: 0}
     - target: {fileID: 13767310, guid: 663fd3fcb0cd4fe4f8316a05b83dc575, type: 3}
       propertyPath: m_AABB.m_Extent.y
@@ -6872,7 +6872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13767310, guid: 663fd3fcb0cd4fe4f8316a05b83dc575, type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: -0.00037020445
+      value: -0.00037050247
       objectReference: {fileID: 0}
     - target: {fileID: 13767310, guid: 663fd3fcb0cd4fe4f8316a05b83dc575, type: 3}
       propertyPath: m_AABB.m_Extent.z
@@ -7123,7 +7123,7 @@ PrefabInstance:
     - target: {fileID: 4414796965512117655, guid: 6d7620ceefd033543898485209077c49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.51
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 4414796965512117655, guid: 6d7620ceefd033543898485209077c49,
         type: 3}
@@ -7133,7 +7133,7 @@ PrefabInstance:
     - target: {fileID: 4414796965512117655, guid: 6d7620ceefd033543898485209077c49,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 4414796965512117655, guid: 6d7620ceefd033543898485209077c49,
         type: 3}
