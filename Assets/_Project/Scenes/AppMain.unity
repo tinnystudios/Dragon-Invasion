@@ -58,7 +58,7 @@ LightmapSettings:
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
-    m_AO: 0
+    m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
@@ -96,8 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 112000002, guid: 60de2e578fcac464dab17362756f7e9b,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
@@ -6037,7 +6036,7 @@ Transform:
   m_GameObject: {fileID: 1718505714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.008, y: 1.047, z: -1.38}
-  m_LocalScale: {x: 0.47014, y: 0.47014, z: 0.47014}
+  m_LocalScale: {x: 0.31948364, y: 0.31948364, z: 0.31948364}
   m_Children: []
   m_Father: {fileID: 2037929979}
   m_RootOrder: 6
