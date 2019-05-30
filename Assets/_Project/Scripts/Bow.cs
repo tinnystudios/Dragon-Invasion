@@ -86,6 +86,8 @@ public class Bow : MonoBehaviour
 
         _arrow.transform.position = Vector3.Lerp(startPosition, endPosition, ArrowDistance01);
         _arrow.transform.rotation = Notch.transform.rotation;
+
+        Vibrate(_arrowGrabber);
     }
 
     public void FindArrow()
@@ -101,12 +103,26 @@ public class Bow : MonoBehaviour
             if (_arrow == null)
                 _arrow = arrowHit;
 
+            Vibrate(_arrowGrabber);
+
             if (_arrow != null && _arrow == arrowHit && _arrowGrabber != null && _arrowGrabber.IsGrabbing)
             {
                 _arrow.Found(Notch);
                 _grabberFoundPos = _arrowGrabber.transform.position;
             }
         }
+    }
+
+    public void Vibrate(Grabber grabber)
+    {
+        if (grabber == null)
+            return;
+
+        var hand = grabber.Handedness == EHandedness.Left
+            ? OVRInput.Controller.LTouch
+            : OVRInput.Controller.RTouch;
+
+        OVRInput.SetControllerVibration(1, 1, hand);
     }
 
     private void OnArrowRelease()
