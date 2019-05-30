@@ -250,8 +250,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   Notch: {fileID: 2546804945142836988}
-  Radius: 0.4
-  MaxArrowDistance: 1
+  Radius: 0.2
+  MaxArrowDistance: 0.8
+  MaxArrowVelocity: 55
 --- !u!114 &8576990516302382780
 MonoBehaviour:
   m_ObjectHideFlags: 0

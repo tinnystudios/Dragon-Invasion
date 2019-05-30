@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bow : MonoBehaviour
 {
@@ -11,7 +8,8 @@ public class Bow : MonoBehaviour
     public BowNotch Notch;
 
     public float Radius = 0.2F;
-    public float MaxArrowDistance = 1.5F;
+    public float MaxArrowDistance = 0.8F;
+    public float MaxArrowVelocity = 55;
 
     public bool CanLockArrow => 
         _arrow != null && 
@@ -113,11 +111,16 @@ public class Bow : MonoBehaviour
 
     private void OnArrowRelease()
     {
-        var velocity = Mathf.Lerp(0, 50, ArrowDistance01);
+        var velocity = Mathf.Lerp(0, MaxArrowVelocity, ArrowDistance01);
 
         _arrow.Fire(velocity);
         _arrow = null;
 
         MakeNewArrow();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(Notch.transform.position, Radius);
     }
 }
