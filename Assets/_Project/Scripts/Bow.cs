@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Bow : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Bow : MonoBehaviour
     public float Radius = 0.2F;
     public float MaxArrowDistance = 0.8F;
     public float MaxArrowVelocity = 55;
+
+    public float CoolDown = 0.1F;
+    public bool CoolingDown { get; private set; }
 
     public bool CanLockArrow => 
         _arrow != null && 
@@ -144,6 +148,11 @@ public class Bow : MonoBehaviour
 
     private void OnArrowRelease()
     {
+        if (CoolingDown)
+            return;
+
+        StartCoroutine(BeginCoolDown());
+
         var velocity = Mathf.Lerp(0, MaxArrowVelocity, ArrowDistance01);
 
         _arrow.Fire(velocity);
@@ -157,5 +166,12 @@ public class Bow : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(Notch.transform.position, Radius);
+    }
+
+    private IEnumerator BeginCoolDown()
+    {
+        CoolingDown = true;
+        yield return new WaitForSeconds(CoolDown);
+        CoolingDown = false;
     }
 }
