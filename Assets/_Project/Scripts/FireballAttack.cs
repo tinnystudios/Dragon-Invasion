@@ -22,3 +22,13 @@ public class FireballAttack : EnemyAttackBase
         CoolDown.Begin();
     }
 }
+
+public class HitTarget : MonoBehaviour
+{
+    public float Weight = 1;
+}
+
+public interface IHitTarget
+{
+
+}
