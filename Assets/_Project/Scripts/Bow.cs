@@ -57,21 +57,15 @@ public class Bow : MonoBehaviour
         _arrowGrabber.Grab(arrowGrab);
 
         // Subscribe to Grabber Inputs
-        _arrowGrabber.GrabberInput.OnGrabDown += OnArrowGrabDown;
         _arrowGrabber.GrabberInput.OnGrabUp += OnArrowGrabUp;
 
         return _arrow;
     }
 
-    private void OnArrowGrabDown()
-    {
-        _arrowGrabber.GrabberInput.OnGrabDown -= OnArrowGrabDown;
-    }
-
     private void OnArrowGrabUp()
     {
-        OnArrowRelease();
-        _arrowGrabber.GrabberInput.OnGrabUp -= OnArrowGrabUp;
+        if (_arrow != null && _arrow.FoundNotch)
+            OnArrowRelease();
     }
 
     public void Update()
@@ -161,6 +155,8 @@ public class Bow : MonoBehaviour
         MakeNewArrow();
 
         Vibrate(_arrowGrabber, 0, 0);
+
+        _arrowGrabber.GrabberInput.OnGrabUp -= OnArrowGrabUp;
     }
 
     private void OnDrawGizmos()

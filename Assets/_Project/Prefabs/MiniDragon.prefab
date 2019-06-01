@@ -107,7 +107,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   MoveSpeed: 2
-  AttackRange: 2
+  AttackRange: 3
   ColliderRadius: 0.25
   AttackComponent: {fileID: 6018903288249958087}
 --- !u!114 &-5355423765458530752
@@ -139,8 +139,8 @@ MonoBehaviour:
   FireballPrefab: {fileID: 5860583880177047637, guid: 2c221b772478cb74e8274da76a844a0e,
     type: 3}
   Pivot: {fileID: 8154251292529968247}
-  Power: 3
   CoolDown: {fileID: 8334619296356492311}
+  Power: 3
 --- !u!114 &8334619296356492311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8dbd3ee968da8c42a6cf8b11b769fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 3
+  MinDuration: 0.5
+  MaxDuration: 2
 --- !u!1 &4452633734629475888
 GameObject:
   m_ObjectHideFlags: 0
