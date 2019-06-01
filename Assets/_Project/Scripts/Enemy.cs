@@ -9,11 +9,14 @@ public class Enemy : MonoBehaviour
 
     public LayerMask DamageLayer;
     public float MoveSpeed = 1;
+
     public float AttackRange = 2;
 
     public float ColliderRadius = 0.5F;
 
     public Action<Enemy> OnDeath { get; set; }
+
+    public EnemyAttackBase AttackComponent;
 
     private void Awake()
     {
@@ -43,7 +46,7 @@ public class Enemy : MonoBehaviour
             Attack();
         }
 
-        // Substitute this with colliders or smaller compartments to allow special hitting spots
+        // TODO: Substitute this with colliders or smaller compartments to allow special hitting spots
         var hits = Physics.OverlapSphere(transform.position, ColliderRadius, DamageLayer);
 
         if (hits.Length > 0)
@@ -57,7 +60,7 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-
+        AttackComponent?.Attack();
     }
 
     private void OnDrawGizmos()
