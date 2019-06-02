@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class MoveToDecision : Decision
+public class MoveToDecision : Decision, IBind<Transform>
 {
     public Transform Target;
 
     public float MoveSpeed = 5;
+
+    public void Bind(Transform dependent) => Target = dependent;
 
     public override IEnumerator Do()
     {

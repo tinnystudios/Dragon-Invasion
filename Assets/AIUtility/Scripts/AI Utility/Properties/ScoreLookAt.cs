@@ -3,7 +3,7 @@
 /// <summary>
 /// When the looker look near the agent, the score increases
 /// </summary>
-public class ScoreLookAt : ScorePropertyBase
+public class ScoreLookAt : ScorePropertyBase, IBind<Transform>
 {
     public Transform Looker;
 
@@ -12,8 +12,13 @@ public class ScoreLookAt : ScorePropertyBase
 
     public float MyScore;
 
+    public void Bind(Transform dependent) => Looker = dependent;
+
     public override float Score(DecisionContext context)
     {
+        if (Looker == null)
+            return 0;
+
         var dir = context.Intelligence.transform.position - Looker.transform.position;
         dir.Normalize();
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ScoreRangeToTarget : ScorePropertyBase
+public class ScoreRangeToTarget : ScorePropertyBase, IBind<Transform>
 {
     public Transform Target;
 
@@ -10,6 +10,8 @@ public class ScoreRangeToTarget : ScorePropertyBase
 
     [Header("Gizmos")]
     public Color Color;
+
+    public void Bind(Transform dependent) => Target = dependent;
 
     public override float Score(DecisionContext context)
     {

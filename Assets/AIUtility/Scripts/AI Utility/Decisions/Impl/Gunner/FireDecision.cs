@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class FireDecision : Decision
+public class FireDecision : Decision, IBind<Transform>
 {
     public Transform Target;
 
@@ -10,6 +10,8 @@ public class FireDecision : Decision
     public CoolDown CoolDown;
 
     public float Power = 3;
+
+    public void Bind(Transform dependent) => Target = dependent;
 
     public override IEnumerator Do()
     {
