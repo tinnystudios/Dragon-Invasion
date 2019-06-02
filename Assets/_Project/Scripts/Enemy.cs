@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
             var arrow = hits[0].GetComponentInParent<Arrow>();
             Instantiate(HitEffect, arrow.transform.position, Quaternion.identity);
             Destroy(arrow.gameObject);
+
             Health.TakeDamage();
         }
     }

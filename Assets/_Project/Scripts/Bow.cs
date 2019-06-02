@@ -31,6 +31,8 @@ public class Bow : MonoBehaviour
     private Grabbable _bowGrabbable;
     private Grabber _arrowGrabber;
 
+    public AudioSource FireSource;
+
     private void Awake()
     {
         _bowGrabbable = GetComponent<Grabbable>();
@@ -157,6 +159,8 @@ public class Bow : MonoBehaviour
         Vibrate(_arrowGrabber, 0, 0);
 
         _arrowGrabber.GrabberInput.OnGrabUp -= OnArrowGrabUp;
+
+        FireSource.Play();
     }
 
     private void OnDrawGizmos()
