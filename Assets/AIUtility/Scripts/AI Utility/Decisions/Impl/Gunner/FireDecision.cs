@@ -13,11 +13,17 @@ public class FireDecision : Decision
 
     public override IEnumerator Do()
     {
+        if (CoolDown.IsCoolingDown)
+            yield break;
+
+        CoolDown.Begin();
+
         var fireball = Instantiate(FireballPrefab, Pivot.position, Pivot.rotation);
         var velocity = Pivot.forward * Power;
 
         fireball.Fire(velocity);
 
-        yield return CoolDown.Begin();
+        // Or Stun X Time before making a decision
+        yield break;   
     }
 }

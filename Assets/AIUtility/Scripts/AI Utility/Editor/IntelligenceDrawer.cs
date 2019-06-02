@@ -15,6 +15,8 @@ public class IntelligenceDrawer : Editor
                 var style = decision == intelligence.SelectedDecision ? EditorStyles.boldLabel : EditorStyles.label;
                 GUILayout.Label($"{decision.name} : {decision.Score}", style);
             }
+
+            // Last Action at X Time. 
         }
         GUILayout.EndVertical();
 
