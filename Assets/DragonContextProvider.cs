@@ -1,6 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+public class EnemyContextArgs
+{
+    public Transform Player;
+    public Transform Arrow;
+}
+
 /// <summary>
 /// Bind all Unique Context 
 /// </summary>
@@ -12,8 +18,13 @@ public class DragonContextProvider : MonoBehaviour
     private List<IBind<Transform>> PlayerDependents = new List<IBind<Transform>>();
     private List<IBind<Transform>> ArrowDependents = new List<IBind<Transform>>();
 
-    // TODO remove runtime GetComponents
+    // Testing
     private void Awake()
+    {
+        Bind(new EnemyContextArgs() { Player = this.Player, Arrow = this.Arrow });
+    }
+
+    public void Bind(EnemyContextArgs enemyContextArgs)
     {
         var playerContexts = GetComponentsInChildren<PlayerContext>();
         var arrowContexts = GetComponentsInChildren<ArrowContext>();
@@ -21,7 +32,7 @@ public class DragonContextProvider : MonoBehaviour
         foreach (var arrowContext in arrowContexts)
         {
             var dependent = arrowContext.GetComponent<IBind<Transform>>();
-            dependent.Bind(Arrow);
+            dependent.Bind(enemyContextArgs.Arrow);
 
             ArrowDependents.Add(dependent);
         }
@@ -29,7 +40,7 @@ public class DragonContextProvider : MonoBehaviour
         foreach (var playerContext in playerContexts)
         {
             var dependent = playerContext.GetComponent<IBind<Transform>>();
-            dependent.Bind(Player);
+            dependent.Bind(enemyContextArgs.Player);
 
             PlayerDependents.Add(dependent);
         }
