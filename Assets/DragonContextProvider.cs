@@ -44,9 +44,12 @@ public class DragonContextProvider : MonoBehaviour
 
             PlayerDependents.Add(dependent);
         }
+
+        // TODO: Subscribe to the Arrow shooting, remember to Unsubscribe
+        // Player.OnShootArrow += OnArrowShoot
     }
 
-    private void OnArrowChanged(Arrow arrow)
+    private void OnArrowShoot(Arrow arrow)
     {
         foreach (var dependent in ArrowDependents)
         {

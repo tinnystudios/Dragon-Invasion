@@ -46,6 +46,11 @@ public class Spawner : MonoBehaviour
         var instance = Instantiate(enemy, spawnZone.GetSpawnPosition, Quaternion.identity);
         instance.OnDeath += OnEnemyDeath;
 
+        // TODO: Use the real AI Script
+        // DragonContextProvider.Bind();
+        //instance.Bind(??);
+
+
         OnSpawn?.Invoke(instance);
         _enemies.Add(instance);
     }
