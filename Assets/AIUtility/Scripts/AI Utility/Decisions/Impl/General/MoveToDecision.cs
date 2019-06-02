@@ -13,6 +13,7 @@ public class MoveToDecision : Decision
         var dir = Target.position - agent.transform.position;
         dir.Normalize();
 
+        agent.transform.LookAt(Target);
         agent.transform.position += dir * MoveSpeed * Time.deltaTime;
         yield break;
     }
