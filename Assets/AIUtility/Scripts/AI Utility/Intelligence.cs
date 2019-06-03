@@ -10,7 +10,7 @@ public class Intelligence : MonoBehaviour
     public Decision SelectedDecision { get; private set; }
     public List<Decision> Decisions { get; } = new List<Decision>();
 
-    public float Weight = 0.2F;
+    public float MinWeight = 0.2F;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class Intelligence : MonoBehaviour
         {
             SelectedDecision = _decisionMaker.ScoreAllDecisions(_decisionContext, Decisions);
 
-            if (SelectedDecision.Score > Weight)
+            if (SelectedDecision.Score > MinWeight)
                 yield return SelectedDecision.Do();
             else
                 yield return null;

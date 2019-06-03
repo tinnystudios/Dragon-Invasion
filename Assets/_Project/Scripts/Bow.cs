@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Bow : MonoBehaviour
@@ -16,15 +17,17 @@ public class Bow : MonoBehaviour
     public bool CoolingDown { get; private set; }
 
     public bool CanLockArrow => 
-        _arrow != null && 
-        !_arrow.IsFlying && 
+        Arrow != null && 
+        !Arrow.IsFlying && 
         _arrowGrabber != null && 
-        _arrow.FoundNotch;
+        Arrow.FoundNotch;
 
     public float ArrowDistance01 => DistanceFromFirstGrab / MaxArrowDistance;
     public float DistanceFromFirstGrab => Vector3.Distance(_arrowGrabber.transform.position, _grabberFoundPos);
 
-    private Arrow _arrow;
+    public Arrow Arrow { get; private set; }
+    public event Action<Arrow> OnArrowCreated;
+
     private Vector3 _grabberFoundPos;
     private float _distanceFromStart;
 
@@ -48,25 +51,26 @@ public class Bow : MonoBehaviour
                 _arrowGrabber = hand;
         }
 
-        if(_arrow == null)
+        if(Arrow == null)
             MakeNewArrow();
     }
 
     private Arrow MakeNewArrow()
     {
-        _arrow = Instantiate(ArrowPrefab, _arrowGrabber.transform);
-        var arrowGrab = _arrow.GetComponent<Grabbable>();
+        Arrow = Instantiate(ArrowPrefab, _arrowGrabber.transform);
+        var arrowGrab = Arrow.GetComponent<Grabbable>();
         _arrowGrabber.Grab(arrowGrab);
 
         // Subscribe to Grabber Inputs
         _arrowGrabber.GrabberInput.OnGrabUp += OnArrowGrabUp;
+        OnArrowCreated?.Invoke(Arrow);
 
-        return _arrow;
+        return Arrow;
     }
 
     private void OnArrowGrabUp()
     {
-        if (_arrow != null && _arrow.FoundNotch)
+        if (Arrow != null && Arrow.FoundNotch)
             OnArrowRelease();
     }
 
@@ -86,8 +90,8 @@ public class Bow : MonoBehaviour
         var startPosition = Notch.transform.position;
         var endPosition = Notch.transform.position - (Notch.transform.forward * MaxArrowDistance);
 
-        _arrow.transform.position = Vector3.Lerp(startPosition, endPosition, ArrowDistance01);
-        _arrow.transform.rotation = Notch.transform.rotation;
+        Arrow.transform.position = Vector3.Lerp(startPosition, endPosition, ArrowDistance01);
+        Arrow.transform.rotation = Notch.transform.rotation;
 
         var amount = Mathf.Lerp(0.2F, 0.8F,ArrowDistance01);
         Vibrate(_arrowGrabber, amount, amount);
@@ -103,7 +107,7 @@ public class Bow : MonoBehaviour
 
     public void FindArrow()
     {
-        if (_arrow != null && _arrow.FoundNotch)
+        if (Arrow != null && Arrow.FoundNotch)
             return;
 
         var hits = Physics.OverlapSphere(Notch.transform.position, Radius, ArrowLayer);
@@ -111,19 +115,19 @@ public class Bow : MonoBehaviour
         {
             var arrowHit = hit.GetComponentInParent<Arrow>();
 
-            if (_arrow == null)
-                _arrow = arrowHit;
+            if (Arrow == null)
+                Arrow = arrowHit;
 
             Vibrate(_arrowGrabber, 0.2F, 0.2F);
 
-            if (_arrow != null && _arrow == arrowHit && _arrowGrabber != null && _arrowGrabber.IsGrabbing)
+            if (Arrow != null && Arrow == arrowHit && _arrowGrabber != null && _arrowGrabber.IsGrabbing)
             {
-                _arrow.Found(Notch);
+                Arrow.Found(Notch);
                 _grabberFoundPos = _arrowGrabber.transform.position;
             }
         }
 
-        if (_arrow != null && !_arrow.FoundNotch && hits.Length == 0)
+        if (Arrow != null && !Arrow.FoundNotch && hits.Length == 0)
         {
             Vibrate(_arrowGrabber,0,0);
         }
@@ -151,8 +155,8 @@ public class Bow : MonoBehaviour
 
         var velocity = Mathf.Lerp(0, MaxArrowVelocity, ArrowDistance01);
 
-        _arrow.Fire(velocity);
-        _arrow = null;
+        Arrow.Fire(velocity);
+        Arrow = null;
 
         MakeNewArrow();
 

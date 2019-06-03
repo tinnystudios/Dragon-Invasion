@@ -1,56 +1,44 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyContextArgs
-{
-    public Transform Player;
-    public Transform Arrow;
-}
-
 /// <summary>
 /// Bind all Unique Context 
 /// </summary>
-public class DragonContextProvider : MonoBehaviour
+public class DragonContextProvider : MonoBehaviour, IBind<BowHeroCharacter>
 {
-    public Transform Player;
-    public Transform Arrow;
+    public void Bind(BowHeroCharacter dependent)
+    {
+        var enemyContext = new EnemyContextArgs() { Player = dependent };
+        Bind(enemyContext);
+    }
 
     private List<IBind<Transform>> PlayerDependents = new List<IBind<Transform>>();
     private List<IBind<Transform>> ArrowDependents = new List<IBind<Transform>>();
-
-    // Testing
-    private void Awake()
-    {
-        Bind(new EnemyContextArgs() { Player = this.Player, Arrow = this.Arrow });
-    }
 
     public void Bind(EnemyContextArgs enemyContextArgs)
     {
         var playerContexts = GetComponentsInChildren<PlayerContext>();
         var arrowContexts = GetComponentsInChildren<ArrowContext>();
 
-        foreach (var arrowContext in arrowContexts)
-        {
-            var dependent = arrowContext.GetComponent<IBind<Transform>>();
-            dependent.Bind(enemyContextArgs.Arrow);
-
-            ArrowDependents.Add(dependent);
-        }
-
         foreach (var playerContext in playerContexts)
         {
             var dependent = playerContext.GetComponent<IBind<Transform>>();
-            dependent.Bind(enemyContextArgs.Player);
+            dependent.Bind(enemyContextArgs.Player.transform);
 
             PlayerDependents.Add(dependent);
         }
 
-        // TODO: Subscribe to the Arrow shooting, remember to Unsubscribe
-        // Player.OnShootArrow += OnArrowShoot
+        var player = enemyContextArgs.Player;
+
+        player.OnBowPickedUp += bow =>
+        {
+            bow.OnArrowCreated += OnArrowCreated;
+        };
     }
 
-    private void OnArrowShoot(Arrow arrow)
+    private void OnArrowCreated(Arrow arrow)
     {
+        // Bind a new arrow each time a new one is created
         foreach (var dependent in ArrowDependents)
         {
             dependent.Bind(arrow.transform);
