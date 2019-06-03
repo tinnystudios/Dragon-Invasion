@@ -4,21 +4,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public DragonContextProvider DragonContextProvider;
-
-    public GameObject HitEffect;
-
     public Health Health;
 
+    public GameObject HitEffect;
     public LayerMask DamageLayer;
-    public float MoveSpeed = 1;
-
-    public float AttackRange = 2;
 
     public float ColliderRadius = 0.5F;
 
     public Action<Enemy> OnDeath { get; set; }
-
-    public EnemyAttackBase AttackComponent;
 
     private void Awake()
     {
@@ -33,7 +26,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        // MoveOrAttack();
         DetectHit();
     }
 
@@ -55,29 +47,6 @@ public class Enemy : MonoBehaviour
 
             Health.TakeDamage();
         }
-    }
-
-    public void MoveOrAttack()
-    {
-        var cam = Camera.main.transform;
-        var target = cam.position;
-        var dist = Vector3.Distance(transform.position, target);
-
-        transform.LookAt(target);
-
-        if (dist > AttackRange)
-        {
-            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-        }
-        else
-        {
-            Attack();
-        }
-    }
-
-    private void Attack()
-    {
-        AttackComponent?.Attack();
     }
 
     private void OnDrawGizmos()

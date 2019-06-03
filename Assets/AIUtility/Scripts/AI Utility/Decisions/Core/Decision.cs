@@ -18,8 +18,6 @@ public abstract class Decision : MonoBehaviour
     public float Bonus => Weight;
 
     public abstract IEnumerator Do();
-
-    // Is Available?
 }
 
 public abstract class Decision<T> : Decision where T : ContextProviderBase, IContextProvider

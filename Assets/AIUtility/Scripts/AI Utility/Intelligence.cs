@@ -10,7 +10,7 @@ public class Intelligence : MonoBehaviour
     public Decision SelectedDecision { get; private set; }
     public List<Decision> Decisions { get; } = new List<Decision>();
 
-    public float MinWeight = 0.2F;
+    public float MinWeight = 0.0F;
 
     private void Awake()
     {

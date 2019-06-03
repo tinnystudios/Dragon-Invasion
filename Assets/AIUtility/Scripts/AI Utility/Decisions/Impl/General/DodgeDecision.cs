@@ -5,6 +5,7 @@ using UnityEngine;
 public class DodgeDecision : Decision
 {
     public float Distance = 1;
+    public float Duration = 0.5F;
 
     [Range(0,100)]
     public int DodgeChance = 10;
@@ -27,10 +28,9 @@ public class DodgeDecision : Decision
         var dir = Random.onUnitSphere;
 
         var dodgeTo = agent.transform.position + dir * Distance;
-        var duration = 0.5F;
         var startPosition = agent.transform.position;
 
-        for (float i = 0; i < 1.0F; i += Time.deltaTime / duration)
+        for (float i = 0; i < 1.0F; i += Time.deltaTime / Duration)
         {
             agent.transform.position = Vector3.Lerp(startPosition, dodgeTo, i);
             yield return null;
