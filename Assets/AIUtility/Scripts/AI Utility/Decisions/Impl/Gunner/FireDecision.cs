@@ -13,6 +13,11 @@ public class FireDecision : Decision, IBind<Transform>
 
     public void Bind(Transform dependent) => Target = dependent;
 
+    /// <summary>
+    /// Don't even consider firing if you are cooling down
+    /// </summary>
+    public override float Availability => CoolDown.IsCoolingDown ? 0 : 1;
+
     public override IEnumerator Do()
     {
         if (CoolDown.IsCoolingDown)

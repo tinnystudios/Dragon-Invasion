@@ -14,6 +14,11 @@ public abstract class Decision : MonoBehaviour
     public DecisionScoreEvaluator DSE = new DecisionScoreEvaluator();
     public DecisionContext Context { get; set; }
 
+    /// <summary>
+    /// Where 1 means the score will remain the same and 0 means the score will always be 0
+    /// </summary>
+    public virtual float Availability => 1.0F;
+
     public float Score { get; set; }
     public float Bonus => Weight;
 
