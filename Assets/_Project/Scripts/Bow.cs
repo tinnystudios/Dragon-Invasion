@@ -55,13 +55,19 @@ public class Bow : MonoBehaviour
             MakeNewArrow();
     }
 
+    // Current only used as a test case
+    public Arrow MakeArrow()
+    {
+        Arrow = Instantiate(ArrowPrefab);
+        OnArrowCreated?.Invoke(Arrow);
+        return Arrow;
+    }
+
     private Arrow MakeNewArrow()
     {
         Arrow = Instantiate(ArrowPrefab, _arrowGrabber.transform);
         var arrowGrab = Arrow.GetComponent<Grabbable>();
         _arrowGrabber.Grab(arrowGrab);
-
-        // Subscribe to Grabber Inputs
         _arrowGrabber.GrabberInput.OnGrabUp += OnArrowGrabUp;
         OnArrowCreated?.Invoke(Arrow);
 

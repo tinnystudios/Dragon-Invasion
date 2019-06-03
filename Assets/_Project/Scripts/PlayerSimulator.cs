@@ -1,15 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerSimulator : MonoBehaviour
+public class PlayerSimulator : MonoBehaviour, IBind<BowHeroCharacter>
 {
+    public BowHeroCharacter BowHeroCharacter { get; private set; }
     public Transform Player;
     public Arrow Arrow;
 
     public float MoveSpeed = 1;
+    public GameObject[] HideThese;
+
+    public void Bind(BowHeroCharacter dependent) => BowHeroCharacter = dependent;
 
 #if UNITY_EDITOR
+
+    private void Awake()
+    {
+        foreach (var g in HideThese)
+        {
+            g.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         Player.transform.position += GameInput.Movement * MoveSpeed;
@@ -20,7 +31,11 @@ public class PlayerSimulator : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             var pos = Vector3.zero + ray.direction * 1;
-            var arrow = Instantiate(Arrow, ray.origin, transform.rotation);
+
+            var arrow = BowHeroCharacter.Bow.MakeArrow();
+
+            arrow.transform.position = ray.origin;
+            arrow.transform.rotation = transform.rotation;
             arrow.transform.LookAt(pos);
             arrow.Fire(10);
         }

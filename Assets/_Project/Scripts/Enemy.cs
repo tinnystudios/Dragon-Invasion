@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public DragonContextProvider DragonContextProvider;
+
     public GameObject HitEffect;
 
     public Health Health;
@@ -31,6 +33,32 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        // MoveOrAttack();
+        DetectHit();
+    }
+
+    public void Bind(BowHeroCharacter bowHeroCharacter)
+    {
+        var enemyContext = new EnemyContextArgs() { Player = bowHeroCharacter };
+        DragonContextProvider.Bind(enemyContext);
+    }
+
+    public void DetectHit()
+    {
+        var hits = Physics.OverlapSphere(transform.position, ColliderRadius, DamageLayer);
+
+        if (hits.Length > 0)
+        {
+            var arrow = hits[0].GetComponentInParent<Arrow>();
+            Instantiate(HitEffect, arrow.transform.position, Quaternion.identity);
+            Destroy(arrow.gameObject);
+
+            Health.TakeDamage();
+        }
+    }
+
+    public void MoveOrAttack()
+    {
         var cam = Camera.main.transform;
         var target = cam.position;
         var dist = Vector3.Distance(transform.position, target);
@@ -44,18 +72,6 @@ public class Enemy : MonoBehaviour
         else
         {
             Attack();
-        }
-
-        // TODO: Substitute this with colliders or smaller compartments to allow special hitting spots
-        var hits = Physics.OverlapSphere(transform.position, ColliderRadius, DamageLayer);
-
-        if (hits.Length > 0)
-        {
-            var arrow = hits[0].GetComponentInParent<Arrow>();
-            Instantiate(HitEffect, arrow.transform.position, Quaternion.identity);
-            Destroy(arrow.gameObject);
-
-            Health.TakeDamage();
         }
     }
 

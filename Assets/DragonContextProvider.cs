@@ -4,14 +4,8 @@ using UnityEngine;
 /// <summary>
 /// Bind all Unique Context 
 /// </summary>
-public class DragonContextProvider : MonoBehaviour, IBind<BowHeroCharacter>
+public class DragonContextProvider : MonoBehaviour
 {
-    public void Bind(BowHeroCharacter dependent)
-    {
-        var enemyContext = new EnemyContextArgs() { Player = dependent };
-        Bind(enemyContext);
-    }
-
     private List<IBind<Transform>> PlayerDependents = new List<IBind<Transform>>();
     private List<IBind<Transform>> ArrowDependents = new List<IBind<Transform>>();
 
@@ -19,6 +13,13 @@ public class DragonContextProvider : MonoBehaviour, IBind<BowHeroCharacter>
     {
         var playerContexts = GetComponentsInChildren<PlayerContext>();
         var arrowContexts = GetComponentsInChildren<ArrowContext>();
+
+        // List dependecies
+        foreach (var arrowContext in arrowContexts)
+        {
+            var dependent = arrowContext.GetComponent<IBind<Transform>>();
+            ArrowDependents.Add(dependent);
+        }
 
         foreach (var playerContext in playerContexts)
         {
@@ -30,17 +31,22 @@ public class DragonContextProvider : MonoBehaviour, IBind<BowHeroCharacter>
 
         var player = enemyContextArgs.Player;
 
-        player.OnBowPickedUp += bow =>
+        Debug.Log("On Bind Enemy");
+
+        if (player.Bow != null)
         {
-            bow.OnArrowCreated += OnArrowCreated;
-        };
+            player.Bow.OnArrowCreated += OnArrowCreated;
+        }
     }
 
     private void OnArrowCreated(Arrow arrow)
     {
+        Debug.Log("Arrow created " + arrow);
+
         // Bind a new arrow each time a new one is created
         foreach (var dependent in ArrowDependents)
         {
+            Debug.Log($"Bind {arrow.transform.name}");
             dependent.Bind(arrow.transform);
         }
     }

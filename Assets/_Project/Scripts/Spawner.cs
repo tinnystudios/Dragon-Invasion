@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour
+public class Spawner : MonoBehaviour, IBind<BowHeroCharacter>
 {
+    public BowHeroCharacter _bowHeroCharacter { get; set; }
+
     public List<SpawnZone> Zones;
 
     public Action<Enemy> OnSpawn;
@@ -30,6 +32,8 @@ public class Spawner : MonoBehaviour
     /// </summary>
     public EState State { get; private set; }
 
+    public void Bind(BowHeroCharacter dependent) => _bowHeroCharacter = dependent;
+
     public IEnumerator Spawn(Enemy enemy, float rate)
     {
         if (enemy == null)
@@ -46,10 +50,7 @@ public class Spawner : MonoBehaviour
         var instance = Instantiate(enemy, spawnZone.GetSpawnPosition, Quaternion.identity);
         instance.OnDeath += OnEnemyDeath;
 
-        // TODO: Use the real AI Script
-        // DragonContextProvider.Bind();
-        //instance.Bind(??);
-
+        instance.Bind(_bowHeroCharacter);
 
         OnSpawn?.Invoke(instance);
         _enemies.Add(instance);
