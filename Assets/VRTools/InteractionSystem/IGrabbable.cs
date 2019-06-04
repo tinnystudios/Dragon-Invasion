@@ -1,4 +1,6 @@
-﻿public interface IGrabbable
+﻿using UnityEngine;
+
+public interface IGrabbable
 {
     IGrabber Grabber { get; }
     bool CanGrab { get; }
@@ -6,4 +8,6 @@
 
     void AttachTo(IGrabber grabber);
     void Detatch(IGrabber grabber);
+
+    Transform transform { get; } 
 }

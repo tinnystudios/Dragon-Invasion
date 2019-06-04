@@ -11,7 +11,9 @@ public class Grabber : MonoBehaviour, IGrabber
     public EHandedness Handedness;
     public GrabberInput GrabberInput = new GrabberInput();
 
-    public Action OnGrab { get; set; }
+    public Action<IGrabbable> OnGrabAttach { get; set; }
+    public Action<IGrabbable> OnGrabDetatch { get; set; }
+
     public Action OnRelease { get; set; }
 
     public LayerMask LayerMask;
@@ -78,6 +80,8 @@ public class Grabber : MonoBehaviour, IGrabber
     {
         grabbable.AttachTo(this);
         _grabbables.Add(grabbable);
+
+        OnGrabAttach?.Invoke(grabbable);
     }
 
     public void Release()

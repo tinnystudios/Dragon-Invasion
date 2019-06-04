@@ -10,10 +10,15 @@ public interface IGrabber
     /// <summary>
     /// When a Grabbable is grabbed
     /// </summary>
-    Action OnGrab { get; set; }
+    Action<IGrabbable> OnGrabAttach { get; set; }
 
     /// <summary>
-    /// When a Grabbable is released
+    /// When an IGrabbable is successfully detatched
+    /// </summary>
+    Action<IGrabbable> OnGrabDetatch { get; set; }
+
+    /// <summary>
+    /// When a grab is released but not necessarily letting go of the object
     /// </summary>
     Action OnRelease { get; set; }
 
