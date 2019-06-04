@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class DestroyOverTime : MonoBehaviour
 {
-    private float Lifetime = 2.0F;
+    public float Lifetime = 2.0F;
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(Lifetime);
         Destroy(gameObject);
     }
 }
